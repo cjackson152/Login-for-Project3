@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
-const users = requier("./routes/api/users");
+const users = require("./routes/api/users");
 const app = express();
 
 app.use(
