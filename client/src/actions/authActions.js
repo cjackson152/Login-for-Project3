@@ -30,7 +30,8 @@ export const loginUser = userData => dispatch => {
         .catch(err => dispatch({
             type: GET_ERRORS,
             payload: err.response.data
-        }));
+        })
+        );
 };
 
 export const setCurrentUser = decoded => {
@@ -39,6 +40,12 @@ export const setCurrentUser = decoded => {
         payload: decoded
     };
 };
+
+export const setUserLoading = decoded => {
+    return {
+        type: USER_LOADING
+    }
+}
 
 export const logoutUser = () => dispatch => {
     localStorage.removeItem("jwtToken"); //removes token from user local

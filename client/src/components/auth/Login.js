@@ -17,6 +17,14 @@ class Login extends Component {
 
     }
 
+
+    //checks if user is logged in and they try to go to register returns dash
+componentDidMount() {
+    if(this.props.auth.isAuthenticated) {
+        this.props.history.push("/dashboard");
+    }
+}
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenitacted) {
             this.props.history.push("/dashboard");
@@ -64,8 +72,13 @@ return (
                             error={errors.email}
                             id="email"
                             type="email"
+                            className={classnames("", { invalid: errors.email || errors.emailnotfound})}
                             />
                             <label htmlFor="email">Email</label>
+                            <span className="red-text">
+                                {errors.email}
+                                {errors.emailnotfound}
+                            </span>
                     </div>
                     <div className="input-field col s12">
                         <input
@@ -73,9 +86,15 @@ return (
                             value={this.state.password}
                             error={errors.password}
                             id="password"
-                            type="passowrd"
+                            type="password"
+                            className={classnames("", { invalid: errors.password || errors.passwordincorrect
+                            })}
                             />
                             <label htmlFor="password">Password</label>
+                            <span className="red-text">
+                                {errors.password}
+                                {errors.passwordincorrect}
+                            </span>
                     </div>
                     <div className="col s12" style={{ paddingLeft: "11px" }}>
                         <button
@@ -96,4 +115,18 @@ return (
 }
 }
 
-export default Login;
+Login.propTypes = {
+    loginUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(
+    mapStateToProps,
+    { loginUser }
+)(Login);

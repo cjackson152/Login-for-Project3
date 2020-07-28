@@ -21,7 +21,7 @@ router.post("/register", (req, res) => {
 
     User.findOne({ email: req.body.email }).then(user => {
         if (user) {
-            return res.stats(400).json({ email: "Email alread in use" });
+            return res.status(400).json({ email: "Email alread in use" });
         } else {
             const newUser = new User({
                 name: req.body.name,
@@ -44,25 +44,7 @@ router.post("/register", (req, res) => {
     });
 });
 
-router.post("/login", (req, res) => {
-    const { errors, isValid } = validateLoginInput(req.body);
 
-    if (!isValid) {
-        return res.status(400).json(errors);
-    }
-
-    const email = req.body.email;
-        const password = req.body.password;
-
-    User.findOne({ email }).then(user => {
-        if (!user) {
-            return res.status(404).json({ emailnotfound: "Email not found"});
-
-        }
-
-    bcrypt.compare(password)
-    })
-})
 
 //ROUTE LOGIN api/users/login
 

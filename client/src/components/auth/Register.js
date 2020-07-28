@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
 
@@ -17,6 +16,13 @@ class Register extends Component {
             errors: {}
         };
     }
+
+    // checks if user is logged in, if so redirects to dash
+componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+        this.props.history.push("/dashboard");
+    }
+}
 
     componentWillRecieveProps(nextProps) {
         if (nextProps.errors) {
