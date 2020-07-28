@@ -14,10 +14,9 @@ class Dashboard extends Component {
             <div style={{ height: "75vh" }} className="container valign-wrapper">
                 <div className="row">
                     <div className="col s12 center-align">
-                        <h3>Hello, {user.name.split(" ")[0]}
-                        <p className="flow-text black-text text-darken-1">
-                            Welcome! {" "}
-                            <span style={{ fontFamily: "monospace" }}>{user.name.split(" ")[0]}</span></p></h3>
+                        <h1>{Date(" ")}</h1>
+                        <h3>Hello, {user.name.split(" ")[0]}</h3>
+                        <p className="flow-text black-text text-darken-1"/>
                             <button
                                 style={{
                                     width: "130px",

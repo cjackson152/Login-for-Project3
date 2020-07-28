@@ -26,7 +26,7 @@ componentDidMount() {
 }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.auth.isAuthenitacted) {
+        if (nextProps.auth.isAuthenticated) {
             this.props.history.push("/dashboard");
         }
         if (nextProps.errors) {
